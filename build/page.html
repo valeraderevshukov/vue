@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="utf-8">
-    <title>Index page</title>
+    <title>First task</title>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#fff">
@@ -13,52 +13,26 @@
 
   <body>
     <!-- BEGIN content -->
-    <div class="out">
-      <h1>Index page</h1>
-      <p>Hello from partials/_header.html</p>
-      <svg class="icon icon-facebook">
-        <use xlink:href="img/sprite.svg#icon-facebook"></use>
-      </svg>
-      <p>
-        <!-- begin input -->
-        <label class="checkbox">
-          <input type="checkbox" name="checkbox">
-          <span class="checkbox__text">checkbox</span>
-        </label>
-        <!-- end input -->
-      </p>
-      <p>
-        <!-- begin input -->
-        <label class="checkbox">
-          <input type="checkbox" name="exemple-name" checked>
-          <span class="checkbox__text">checkbox-checked</span>
-        </label>
-        <!-- end input -->
-      </p>
-      <!-- begin input -->
-      <label class="radio">
-        <input type="radio" name="exemple-name">
-        <span class="radio__text">text</span>
-      </label>
-      <!-- end input -->
-      <!-- begin breadcrumbs -->
-      <ul class="breadcrumbs">
-        <li class="breadcrumbs__item">
-          <a href="#">Главная</a>
-        </li>
-        <li class="breadcrumbs__item">
-          <a href="#">Внутренняя</a>
-        </li>
-        <li class="breadcrumbs__item">
-          <span>Корзина</span>
-        </li>
-      </ul>
-      <!-- end breadcrumbs -->
-      <li>Item1</li>
-      <li>Item2</li>
+    <div class="out" id="app" v-cloak>
+      <button class="btn" v-on:click="itemsVisible=!itemsVisible">
+        {{itemsVisible?'Скрыть таблицу':'Отобразить таблицу'}}
+      </button>
+      <table v-show="itemsVisible">
+        <tr>
+          <th colspan="4">Общее количества пользователей {{ items.length }}</th>
+        </tr>
+        <tr v-for="item in items">
+          <td v-if="item.avatar"><img v-bind:src="item.avatar" alt="img"></td>
+          <td v-else>показывать аватарку по умолчанию</td>
+          <td>{{item.name}}</td>
+          <td>{{item.surname}}</td>
+          <td>{{item.patronymic}}</td>
+        </tr>
+      </table>
     </div>
     <!-- END content -->
     <!-- BEGIN scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
     <!-- END scripts -->
   </body>
